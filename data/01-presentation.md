@@ -4,7 +4,7 @@ Nom et prénom : Dujour Valentin
 Étude : Étudiant en 3ème année du BUT Science des Données (BUT SD)
 Spécialisation / Parcours : Visualisation et Conception des Outils Décisionnels (VCOD)
 
-## Objectifs de formation
+## Objectifs de la formation
 
 - Maîtriser les outils de collecte et de traitement de données  
 - Concevoir des visualisations efficaces  
