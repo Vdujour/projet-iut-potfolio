@@ -32,7 +32,7 @@ def split_text(text, chunk_size=500, overlap=50):
             end = start + chunk_size
             chunk = section[start:end]
             chunks.append(chunk)
-            start += chunk_size - overlap  # Move the start point forward with overlap
+            start += chunk_size - overlap  # Mettre la fin du dernier chunk au début du suivant
             
     return chunks
 
