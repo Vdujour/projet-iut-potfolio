@@ -1,6 +1,6 @@
-## Projets — BUT 1
+## Analyse de la situation socio-économique de la Martinique
 
-### Analyse de la situation socio-économique de la Martinique
+Année : BUT 1 
 
 Contexte : Projet individuel réalisé à partir de données de l’INSEE portant sur la démographie en Martinique en 2020.
 
@@ -16,7 +16,9 @@ Compétences :
 - Word
 
 
-### Application automatisée - reporting notes
+## Application automatisée - reporting notes
+
+Année : BUT 1 
 
 Contexte : Projet réalisé en binôme sur le logiciel Excel avec l'utilisation de VBA.
 
@@ -32,7 +34,9 @@ Compétences :
 - Excel
 
 
-### Création et implémentation d'une base de données
+## Création et implémentation d'une base de données
+
+Année : BUT 1 
 
 Contexte : Projet en groupe de trois portant sur la reconstruction d’une base de données du SDIS 79 à partir de fichiers CSV existants.
 
@@ -49,7 +53,9 @@ Compétences :
 - Python
 
 
-### Analyse de données, reporting et dataviz
+## Analyse de données, reporting et dataviz
+
+Année : BUT 1 
 
 Contexte : Projet final de première année réalisé en collaboration avec l’entreprise Calyxis (Observatoire MAVIE).
 
@@ -66,9 +72,10 @@ Compétences :
 - R
 
 
-## Projets — BUT 2
 
-### Création d'un site de gestion - Concession BMW
+## Création d'un site de gestion - Concession BMW
+
+Année : BUT 2
 
 Contexte : Projet réalisé en duo visant à concevoir un site internet de gestion pour une concession automobile BMW.
 
@@ -86,7 +93,9 @@ Compétences :
 - JS
 
 
-### Carte des pouvoirs d'achat en France
+## Carte des pouvoirs d'achat en France
+
+Année : BUT 2
 
 Contexte : Projet de groupe visant à créer une carte interactive à partir de données obtenues par web scraping.
 
@@ -102,7 +111,9 @@ Compétences :
 - Folium
 
 
-### Logements à Paris
+## Logements à Paris
+
+Année : BUT 2
 
 Contexte : Projet d’analyse du marché Airbnb à Paris, incluant une application interactive accessible en ligne.
 
@@ -118,7 +129,9 @@ Compétences :
 - Streamlit
 
 
-### Informations n° SIRET (Projet personnel)
+## Informations n° SIRET (Projet personnel)
+
+Année : BUT 2
 
 Contexte : Projet personnel réalisé à la suite d’un premier projet de web scraping.
 
