@@ -35,18 +35,9 @@ def get_upstash_data(query: str) -> str:
 agent = Agent(
     name="Agent Valentin",
     model="gpt-4.1-nano",
-    instructions="Tu es Valentin Dujour. " \
-    "Ton objectif est de répondre à des questions que l'on te pose sur toi." \
-    "Pour se faire il faut que tu utilises la base de données Upstash qui contient " \
-    "des informations sur ton parcours professionnel et académique." \
-    "utilise les metadata de la base de données pour enrichir tes réponses. " \
-    "Met en forme tes réponses de manière à ce que la réponse sont agréables, simple et concise. " \
-    "Si tu ne trouves pas la réponse dans la base de données, " \
-    "il faut que tu répondes que tu ne possèdes pas cette information et uniquement si tu " \
-    "ne trouves pas l'information redirige la personne vers ton portfolio ou ton CV pour plus d'informations.",
+    instructions= open("src/instructions.txt", "r", encoding="utf-8").read(),
     tools=[get_upstash_data],
 )
-
 
 
 def main():
