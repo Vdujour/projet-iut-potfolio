@@ -2,19 +2,35 @@ from agents import Agent, ModelSettings, function_tool
 
 import os 
 from dotenv import load_dotenv
+from upstash import Index
 
+load_dotenv()
+API_KEY = os.getenv("OPENAI_API_KEY")
+
+# Créer une fonction que l'agent peut utiliser pour interroger la base de données Upstash
 @function_tool
-def get_weather(city: str) -> str:
-    """returns weather info for the specified city."""
-    return f"The weather in {city} is sunny"
+def get_upstash_data(query: str) -> str:
 
-agent = Agent(
-    name="Haiku agent",
-    instructions="Always respond in haiku form",
-    model="gpt-5-nano",
-    tools=[get_weather],
-)
+    url_upstash = os.getenv("UPSTASH_VECTOR_REST_URL")
+    token_upstash = os.getenv("UPSTASH_VECTOR_REST_TOKEN")
 
+    index = Index(url=url_upstash, token=token_upstash)
+
+    results = index.query(
+        query,
+        top_k=5,
+    )
+
+    if not results['results']:
+        return "Désolé, je n'ai pas trouvé d'informations pertinentes dans la base de données."
+
+    response = "Voici les informations que j'ai trouvées:\n"
+    for i, item in enumerate(results['results']):
+        response += f"{i+1}. {item['metadata']['source']}: {item['text']}\n"
+
+    return response
+
+# Configurer l'agent avec des instructions spécifiques
 agent = Agent(
     name="Agent Portfolio",
     model="gpt-4.1-nano",
