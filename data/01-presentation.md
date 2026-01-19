@@ -1,7 +1,7 @@
 ## Qui suis-je ?
 
 Nom et prénom : Dujour Valentin
-Étude : Étudiant en 3ème année du BUT Science des Données (BUT SD) en Alternance
+Étude : Étudiant en 3ème année du BUT Science des Données (BUT SD) en Alternance à la MAIF
 Spécialisation / Parcours : Visualisation et Conception des Outils Décisionnels (VCOD)
 
 ## Objectifs de la formation
