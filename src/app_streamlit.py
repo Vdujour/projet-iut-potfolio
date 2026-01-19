@@ -5,9 +5,9 @@ from agent import agent
 
 
 
-st.set_page_config(page_title="Chat Portfolio", page_icon="💬")
+st.set_page_config(page_title="Chatbot - Valentin Dujour", page_icon="💬")
 
-st.title("Chat Portfolio")
+st.title("Chatbot de Valentin Dujour")
 
 if "messages" not in st.session_state:
     st.session_state.messages = []
@@ -18,8 +18,10 @@ for message in st.session_state.messages:
         st.markdown(message["content"])
 
 user_question = st.chat_input("Que veux-tu savoir ?")
+st.caption("ℹ️ Ce chatbot utilise l'IA pour répondre à vos questions.")
 
 if user_question:
+    # Afficher le message de l'utilisateur dans le chat
     st.session_state.messages.append({"role": "user", "content": user_question})
     with st.chat_message("user"):
         st.markdown(user_question)
