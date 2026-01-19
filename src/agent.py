@@ -37,6 +37,10 @@ agent = Agent(
     model="gpt-4.1-nano",
     instructions= open("src/instructions.txt", "r", encoding="utf-8").read(),
     tools=[get_upstash_data],
+    model_settings=ModelSettings(
+        tool_choice="required",  # Force l'utilisation des outils
+        max_tokens=2000,  # Assure des réponses complètes
+    ),
 )
 
 
