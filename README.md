@@ -1,74 +1,187 @@
-# PROJET LLM
+# Portfolio Chatbot - Valentin Dujour
 
-Pour la réalisation de ce projet, vous pouvez utiliser l’IDE de votre choix (le plus connu : [Visual Studio Code](https://code.visualstudio.com/)). Je vous conseille aussi d’installer l’une de ces versions de Python : 3.12 ou 3.13 ([Download Python | Python.org](https://www.python.org/downloads/)).
+## 📋 Description
 
-## Création de la base de données vectorielle
+Chatbot intelligent basé sur l'IA permettant de répondre aux questions sur mon parcours, mes compétences et mes projets. L'application utilise une base de données vectorielle Upstash et l'API Groq pour générer des réponses contextuelles et personnalisées.
 
-Pour réaliser le projet, vous allez avoir besoin d’un index pour stocker vos informations :
-* Créer un compte [Signup - Upstash](https://console.upstash.com/auth/sign-up)
-* Aller dans l’outil « **Vector** »
-* Créer un « **Vector Index** »
-* Configurer l’index : 
-    * **Nom** : Ce que vous voulez
-    * **Région** : Ireland (eu-west-1)
-    * **Type** : Hybrid
-    * **Dense Embedding Model** : BAAI/bge-m3
-    * **Metric** : COSINE
-    * **Sparse Embedding Model** : BM25
-  
-![Configuration Upstash](assets/configuration_index_upstash.png)
-* **Plan** : Free
+---
 
-## OpenAI
+## 🚀 Fonctionnalités
 
-Je vous transmettrais la clé API via UPdago. 
-**Note :** Seul le modèle `gpt-4.1-nano` est accessible avec cette clé.
+- ✨ **Chatbot conversationnel** avec interface Streamlit intuitive
+- 💡 **Questions suggérées** pré-configurées pour faciliter l'interaction
+- 🔢 **Limite de 5 questions** par session pour optimiser l'utilisation de l'API
+- 🔍 **Recherche sémantique** dans une base de données vectorielle
+- 🤖 **Réponses générées par IA** via l'API Groq (modèle gpt-oss-120b)
 
-## Tests
+---
 
-Avant de commencer le projet, nous allons vérifier que tout fonctionne bien (pas de blocage proxy…), pour cela :
-* Créer un `.venv` et installer les packages du fichier requirements via la commande : `pip install -r requirements.txt`
-* Créer un fichier `.env` et copier les variables du fichier `.env.example` dans le fichier `.env` puis compléter les valeurs des variables
-* Ouvrir un terminal et lancer les tests via la commande : `pytest -s`
+## 🛠️ Technologies utilisées
 
-## À vous de jouer !
+| Technologie | Usage |
+|-------------|-------|
+| **Python 3.12+** | Langage de programmation |
+| **Streamlit** | Interface utilisateur interactive |
+| **OpenAI Agents** | Framework pour l'orchestration de l'agent IA |
+| **Groq API** | Modèle de langage (gpt-oss-120b) |
+| **Upstash Vector** | Base de données vectorielle pour la recherche sémantique |
+| **python-dotenv** | Gestion sécurisée des variables d'environnement |
 
-### 1. Préparation des données
-Pour commencer, vous devez créer plusieurs fichiers Markdown (`.md`) dans le dossier `data`. Chaque fichier doit correspondre à une section de votre profil (Expériences, Projets, Compétences, etc.).
-* **Conseil** : Reprenez les informations de votre portfolio existant.
-* **Structure** : Utilisez des titres clairs (`#`, `##`) pour faciliter le futur découpage (chunking) des documents.
+---
 
-### 2. Découpage des documents (Chunking)
-Afin que l'IA puisse retrouver précisément l'information, vous devez diviser vos fichiers Markdown en petits morceaux cohérents.
+## 📁 Structure du projet
 
-### 3. Indexation dans Upstash
-Une fois vos documents découpés, vous devez les envoyer dans votre index Upstash Vector.
-* [Documentation : SDK Python Upstash Vector](https://upstash.com/docs/vector/sdks/py/gettingstarted)
+```
+projet-iut-potfolio/
+├── data/ (Fichier poussés dans upstash)
+│   ├── 01-presentation.md
+│   ├── 02-alternance.md
+│   ├── 03-projet.md
+│   ├── 04-competence.md
+│   └── 05-contact.md
+├── src/ (Scripts python)
+│   ├── agent.py
+│   ├── app_streamlit.py
+│   ├── instructions.txt
+│   ├── load.py
+│   ├── split.py
+│   └── upstash.py
+├── .env (Variables d'environnements)
+├── requirements.txt (Dépendances pour le .venv)
+└── README.md
+```
 
-### 4. Création de l'Agent IA
-Développez votre agent en utilisant la bibliothèque `openai-agents`.
-* [Documentation : Introduction aux Agents](https://openai.github.io/openai-agents-python/agents/)
-* [Documentation : Comment lancer un Agent](https://openai.github.io/openai-agents-python/running_agents/)
+## 🔧 Installation et configuration
 
-### 5. Connexion Agent ↔ Vecteurs (RAG)
-Ajoutez une **Tool** (fonction) à votre agent pour lui permettre d'interroger votre base de données vectorielle lorsqu'une question est posée sur votre profil.
-* [Documentation : Utilisation des Tools](https://openai.github.io/openai-agents-python/tools/)
+### 1️⃣ Cloner le repository
 
-### 6. Interface Utilisateur (Streamlit)
-Créez une interface de chat pour permettre aux utilisateurs d'interagir avec votre agent.
-* [Tutoriel : Créer une application de chat avec Streamlit](https://docs.streamlit.io/develop/tutorials/chat-and-llm-apps/build-conversational-apps)
+```bash
+git clone https://github.com/Vdujour/projet-iut-potfolio.git
+cd projet-iut-potfolio
+```
 
-### 7. Déploiement sur Streamlit Cloud
-Une fois votre application fonctionnelle, déployez là sur Streamlit Cloud.
-* [Documentation : Déployer votre application sur Streamlit Community Cloud](https://docs.streamlit.io/deploy/streamlit-community-cloud/deploy-your-app/deploy)
+### 2️⃣ Créer un environnement virtuel
 
-## Pour aller plus loin (Bonus)
+```bash
+python -m venv .venv
+.venv\Scripts\activate  # Windows
+```
 
-Si vous avez terminé les étapes précédentes et souhaitez enrichir votre projet :
-* **Sauvegarder les conversations** : Utilisez [Upstash Redis](https://upstash.com/docs/redis/overall/getstarted) pour mémoriser l'historique des échanges entre l'utilisateur et l'agent.
-* **Ajouter des nouveaux tools** : Permettez à votre agent d'effectuer d'autres actions (ajout de tools).
+### 3️⃣ Installer les dépendances
 
-## Notes Importantes
+```bash
+pip install -r requirements.txt
+```
 
-* **Streamlit & HTML** : Ne pas insérer de code HTML via Streamlit. Utilisez exclusivement les composants natifs de Streamlit, qui sont largement suffisants pour ce projet. Vous pouvez consulter la liste ici : [API Reference - Streamlit](https://docs.streamlit.io/develop/api-reference).
-* **Clé API OpenAI** : La clé API fournie sera désactivée une fois la correction des projets terminée. Pour continuer à utiliser votre application par la suite, vous devrez utiliser votre propre clé API (il faudra alors créditer son compte [OpenAI](https://openai.com/api/), 10€ devrait être suffisant pendant un moment !).
+### 4️⃣ Configuration des variables d'environnement
+
+Créez un fichier `.env` à la racine du projet avec les variables suivantes :
+
+```env
+UPSTASH_VECTOR_REST_URL="votre_url_upstash"
+UPSTASH_VECTOR_REST_TOKEN="votre_token_upstash"
+GROQ_API_KEY="votre_clé_groq"
+```
+
+> **Note** : Le fichier `.env` est fourni par email et doit être placé à la racine du projet.
+
+---
+
+## 🗄️ Base de données vectorielle (Upstash)
+
+### Création de l'index et chargement des données
+
+Pour créer et alimenter la base de données Upstash Vector, exécutez simplement :
+
+```bash
+python src/upstash.py
+```
+
+**Ce script effectue automatiquement :**
+1. 📂 **Chargement** des fichiers markdown via `load.py`
+2. ✂️ **Découpage** en chunks via `split.py`
+3. 📤 **Indexation** des données dans Upstash Vector
+
+---
+
+## 🤖 Fonctionnement de l'agent IA
+
+### Configuration de l'agent
+
+L'agent IA est configuré dans le fichier **`agent.py`**.
+
+**Caractéristiques principales :**
+- 🔧 **Modèle** : `openai/gpt-oss-120b` via l'API Groq
+- 📝 **Instructions** : Définies dans `instructions.txt` pour contextualiser les réponses
+- 🔍 **Outil** : Fonction `get_upstash_data()` pour interroger la base vectorielle
+
+**Fonctionnement :**
+1. L'utilisateur pose une question
+2. L'agent utilise l'outil `get_upstash_data()` pour rechercher dans Upstash
+3. Les informations pertinentes sont récupérées (top 5 résultats)
+4. L'agent génère une réponse contextualisée avec mes données personnelles
+
+---
+
+## 💻 Lancement de l'application
+
+### Mode développement (local)
+
+Lancez l'application Streamlit avec la commande suivante :
+
+```bash
+streamlit run ./src/app_streamlit.py
+```
+
+L'application sera accessible à l'adresse : **http://localhost:8501**
+
+### 🌐 Déploiement sur Streamlit Cloud
+
+L'application est également déployée en ligne et accessible à l'adresse :
+
+**🔗 https://chatbot-valentin-dujour.streamlit.app/**
+
+---
+
+## 📝 Utilisation
+
+### Interface utilisateur
+
+1. **Saisir une question** dans le champ de texte : *"Que veux-tu savoir ?"*
+2. **Ou cliquer** sur l'une des questions suggérées
+
+### Questions suggérées disponibles
+
+- 📚 **Qui es-tu ?**
+- 💼 **Parle-moi de ton alternance**
+- 🚀 **Quels projets as-tu réalisés ?**
+- 🛠️ **Quelles sont tes compétences ?**
+- 📧 **Comment te contacter ?**
+- 🌐 **Comment aller sur ton portfolio ?**
+
+### ⚠️ Limitation des questions
+
+- **5 questions maximum** par session
+- Après la limite atteinte, l'agent redirige automatiquement vers mes informations de contact
+- Cette limitation permet d'optimiser l'utilisation de la clé API et encourage le contact direct
+
+---
+
+## 🔐 Sécurité
+
+- ✅ Les clés API sont stockées dans le fichier `.env` (non versionné sur Git)
+- ✅ Les secrets sont configurés séparément sur Streamlit Cloud
+- ✅ Aucune clé API n'est exposée dans le code source
+
+---
+
+## 👤 Auteur
+
+**Valentin Dujour**  
+Étudiant en 3ème année BUT Science des Données (BUT SD) en Alternance
+
+- 📧 Email: [valentin.dujour@icloud.com](mailto:valentin.dujour@icloud.com)
+- 💼 LinkedIn: [Valentin Dujour](https://www.linkedin.com/in/valentin-dujour-304b32279)
+- 🌐 Portfolio: [vdujour.github.io](https://vdujour.github.io)
+
+---
