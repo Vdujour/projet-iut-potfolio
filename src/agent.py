@@ -1,4 +1,5 @@
-from agents import Agent, ModelSettings, function_tool, Runner
+from agents import Agent, ModelSettings, OpenAIChatCompletionsModel, function_tool, Runner
+from openai import AsyncOpenAI
 
 import os 
 from dotenv import load_dotenv
@@ -34,13 +35,15 @@ def get_upstash_data(query: str) -> str:
 # Configurer l'agent avec des instructions spécifiques
 agent = Agent(
     name="Agent Valentin",
-    model="gpt-4.1-nano",
     instructions= open("src/instructions.txt", "r", encoding="utf-8").read(),
     tools=[get_upstash_data],
-    model_settings=ModelSettings(
-        tool_choice="required",  # Force l'utilisation des outils
-        max_tokens=2000,  # Assure des réponses complètes
-    ),
+    model = OpenAIChatCompletionsModel(
+        model="openai/gpt-oss-120b",
+        openai_client=AsyncOpenAI(
+            base_url = "https://api.groq.com/openai/v1",
+            api_key = os.getenv("GROQ_API_KEY")
+        )
+    ) 
 )
 
 
